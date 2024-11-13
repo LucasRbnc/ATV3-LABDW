@@ -18,9 +18,8 @@ app.use(cors());
 connect();
 
 // Serve o arquivo HTML na rota raiz "/"
-app.get("/", (req, res) => {
-    res.sendFile(path.join(__dirname, "views/index.html"));
-});
+app.use(express.static("views"));
+
 
 // Rota para outras rotas do aplicativo
 app.use(routes);

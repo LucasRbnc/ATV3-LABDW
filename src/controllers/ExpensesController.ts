@@ -45,6 +45,28 @@ class ExpensesController{
             res.status(206).json({ error: 'Erro'})
         }
     }
+    
+    public async listExpenses(req: Request, res: Response) {
+        try {
+            const expenses = await Expenses.find();
+            res.json(expenses);
+        } catch (error) {
+            res.status(500).json({ error: 'Erro ao listar despesas' });
+        }
+    }
+
+    public async deleteExpense(req: Request, res: Response) {
+        const { id } = req.params;
+        try {
+            const response = await Expenses.findByIdAndDelete(id);
+            if (!response) {
+                return res.status(404).json({ message: 'Despesa não encontrada' });
+            }
+            res.status(200).json({ message: 'Despesa deletada com sucesso' });
+        } catch (error) {
+            res.status(500).json({ error: 'Erro ao deletar despesa' });
+        }
+    }
 }
 
 export default new ExpensesController();
