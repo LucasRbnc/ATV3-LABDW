@@ -1,7 +1,6 @@
 import express from "express";
 import cors from "cors";
 import dotenv from "dotenv";
-import path from "path";
 import routes from "./routes";
 import { connect } from "./database/connection";
 dotenv.config();
@@ -16,10 +15,6 @@ app.use(cors());
 
 // Conecta ao MongoDB
 connect();
-
-// Serve o arquivo HTML na rota raiz "/"
-app.use(express.static("views"));
-
 
 // Rota para outras rotas do aplicativo
 app.use(routes);

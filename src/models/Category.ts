@@ -2,7 +2,7 @@ import mongoose, { Schema } from "mongoose";
 
 const ExpensesSchema = new Schema({
     description:{
-        type:String,
+        type: String,
         trim: true,
         required: [true, "A descrição é obrigatória"]
     },
